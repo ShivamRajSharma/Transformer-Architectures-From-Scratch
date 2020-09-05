@@ -94,7 +94,6 @@ class Embeddings(nn.Module):
         )
         self.segment_embeddings = nn.Embedding(3, embedding_dims)
     
-
     def forward(self, x, segment_x):
         sentence_len = x.shape[1]
         word_embeddings = self.word_embeddings(x)
@@ -155,7 +154,6 @@ class BERT(nn.Module):
         
         if isinstance(module, nn.Linear) and module.bias is not None:
             module.bias.data.zero_()
-
 
     def create_mask(self, mask):
         mask  = (mask != self.mask_idx).unsqueeze(1).unsqueeze(2)
