@@ -118,7 +118,6 @@ class GPT(nn.Module):
         if isinstance(module, nn.Linear) and module.bias is not None:
             module.bias.data.zero_()
 
-    
     def casual_mask(self, x):
         mask = torch.tril(torch.ones((x.shape[0], x.shape[-1], x.shape[-1]))).unsqueeze(1)
         return mask
