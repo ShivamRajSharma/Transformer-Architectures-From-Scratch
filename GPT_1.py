@@ -31,9 +31,7 @@ class SelfAttention(nn.Module):
             score = score.masked_fill(mask == 0, float('-1e20'))
         
         attention_score = nn.Softmax(dim=-1)(score/((self.head_dims)**(1/2)))
-
         out = torch.einsum('bhqv,bvhd->bqhd', [attention_score, value]).reshape(Batch, query_len, self.head_dims*self.heads)
-
         out = self.fc(out)
         
         return out
