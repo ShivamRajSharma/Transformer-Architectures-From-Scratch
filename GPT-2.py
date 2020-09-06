@@ -1,5 +1,4 @@
 from time import time
-import sys
 import torch 
 import torch.nn as nn 
 
@@ -28,13 +27,11 @@ class SelfAttention(nn.Module):
 
         present = torch.cat((key.unsqueeze(0), value.unsqueeze(0)), dim=0)
 
-
         if past is not None:
             past_key, past_value = past
             key = torch.cat((past_key, key), dim=1)
             value = torch.cat((past_value, value), dim=1)
         
-
         score = torch.einsum('bqhd,bkhd->bhqk', [query, key])
         if mask is not None:
             score = score.masked_fill(mask == 0, float('-1e20'))
@@ -132,6 +129,7 @@ class GPT2(nn.Module):
             mask = torch.cat((ones_matix, mask), dim=1)
         mask = mask.unsqueeze(0).unsqueeze(1)
         return mask
+    
 
     def forward(self, x, past=None):
         casual_mask = self.casual_mask(x, past)
@@ -149,7 +147,7 @@ class GPT2(nn.Module):
         
 
 if __name__ == '__main__':
-    #DEFAULT GPT PARAMETERS :-
+    #DEFAULT GPT-2 PARAMETERS :-
     vocab_size = 50257
     embedding_dims = 768
     dropout = 0.1
