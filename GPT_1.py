@@ -157,5 +157,5 @@ if __name__ == '__main__':
     start = time()
     y = model(a)
     print(f'INFERENCE TIME = {time() - start}sec')
-    x = sum(p.numel() for p in model.parameters())
+    x = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f'NUMBER OF PARAMETERS ARE = {x}')
