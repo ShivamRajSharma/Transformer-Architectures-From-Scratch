@@ -206,6 +206,18 @@ class Transformers(nn.Module):
         )
         
         self.pad_idx = pad_idx
+        self.apply(self._init_weights)
+
+    #From @HuggingFace
+    def _init_weights(self, module):
+        if isinstance(module, (nn.Linear, nn.Embedding)):
+            module.weight.data.normal_(mean=0.0, std=0.02)
+        
+        elif isinstance(module, nn.LayerNorm):
+            module.weight.data.fill_(1.0)
+
+        if isinstance(module, nn.Linear) and module.bias is not None:
+            module.bias.data.zero_()
     
     def pad_mask(self, inputs):
         pad_mask = (inputs != self.pad_idx).unsqueeze(1).unsqueeze(2)
