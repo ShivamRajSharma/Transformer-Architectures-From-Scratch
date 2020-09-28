@@ -30,9 +30,9 @@ class Attention(nn.Module):
         
         if mask is not None:
             score.masked_fill(mask == 0, float("-1e20"))
-        score = torch.softmax(score/((self.head)**(1/2)), dim=-1)
+        score = torch.softmax(score/((self.head_dims)**(1/2)), dim=-1)
         
-        out = torch.einsum("bhqk,bvhd->bqhd", [score, value])
+        out = torch.einsum("bhqv,bvhd->bqhd", [score, value])
         out = out.reshape(batch, query_len, self.head*self.head_dims)
         out = self.fc(out)
         
