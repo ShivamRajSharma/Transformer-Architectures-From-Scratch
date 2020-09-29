@@ -1,5 +1,5 @@
 # Transformer Architecure From Scratch Using PyTorch
 
-<img src="https://c4.wallpaperflare.com/wallpaper/10/222/428/bumblebee-transformers-transformers-movies-wallpaper-preview.jpg" height="20%" width="100%">
+<img src="https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/transformers-80s-movie.jpg" width="100%">
 
 
