@@ -56,8 +56,8 @@ class FastAttention(nn.Module):
 
     
     def bidirectional_attention(self, q, k, v):
-        kt_i = torch.einsum('nhkf -> nhf')
-        normalization_factor = 1/(torch.einsum('nhqf, nhf -> nhq', q, kt_i)
+        kt_i = torch.einsum('nhkf -> nhf', k)
+        normalization_factor = 1/(torch.einsum('nhqf, nhf -> nhq', q, kt_i))
         k_v = torch.einsum('nhkf, nhkd -> nhfd', k, v)
         attention = torch.einsum('nhfd, nhqf,  nhq-> nhqd', k_v, q, normalization_factor)
         return attention
