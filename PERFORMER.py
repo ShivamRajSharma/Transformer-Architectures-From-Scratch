@@ -10,19 +10,20 @@ class FastAttention(nn.Module):
         self.input_shape = input_shape
         self.depth = int(input_shape // head)
         self.n_features = n_features
-        self.ORF = self.OrthogonalRandomFeature()
+        self.key_ORF = self.OrthogonalRandomFeature()
+        self.query_ORF = self.OrthogonalRandomFeature()
 
         self.query = nn.Linear(self.depth, self.depth)
         self.key = nn.Linear(self.depth, self.depth)
         self.value = nn.Linear(self.depth, self.depth)
         self.fc = nn.Linear(self.depth*head, input_shape)
 
-    def kernel_function(self, x):
-        normalization_factor = 1/self.ORF.shape[-1]**0.25
+    def kernel_function(self, x, flag):
+        ORF = self.query_ORF if flag == 'query' else self.key_ORF
+        normalization_factor = 1/ORF.shape[-1]**0.25
         x *= normalization_factor
-        out = torch.einsum('nhsd, fd -> nhsf', x, self.ORF)
+        out = torch.einsum('nhsd, fd -> nhsf', x, ORF)
         kernel_fn = nn.ReLU()(out) + 1e-3
-        # print(kernel_fn.shape)
         return kernel_fn
 
     def OrthogonalRandomFeature(self):
@@ -55,8 +56,8 @@ class FastAttention(nn.Module):
 
     
     def bidirectional_attention(self, q, k, v):
-        normalization_factor = torch.einsum('nhkf, nhk -> nhf', k, torch.ones((k.shape[:3])))
-        normalization_factor = torch.einsum('nhqf, nhf -> nhq', q, normalization_factor)
+        kt_i = torch.einsum('nhkf -> nhf')
+        normalization_factor = 1/(torch.einsum('nhqf, nhf -> nhq', q, kt_i)
         k_v = torch.einsum('nhkf, nhkd -> nhfd', k, v)
         attention = torch.einsum('nhfd, nhqf,  nhq-> nhqd', k_v, q, normalization_factor)
         return attention
@@ -65,7 +66,6 @@ class FastAttention(nn.Module):
     def forward(self, query, key, value, mask=None, casual_mask=False):
         batch = query.shape[0]
         query_len, key_len, value_len = query.shape[1], key.shape[1], value.shape[1]
-        # print(casual_mask, query.shape, key.shape, value.shape)
 
         
         query = query.reshape(batch, query_len, self.head, self.depth)
@@ -81,15 +81,13 @@ class FastAttention(nn.Module):
         value = self.value(value)
         
         if mask is not None:
-#             print(key.shape, mask.shape)
             key.masked_fill(mask == 0, float("-1e20"))
         
-        query = self.kernel_function(query)
-        key  = self.kernel_function(key)
+        query = self.kernel_function(query, 'query')
+        key  = self.kernel_function(key, 'key')
         
         if casual_mask:
             out = self.causal_attention(query, key, value)
-        
         else:
             out = self.bidirectional_attention(query, key, value)
             
