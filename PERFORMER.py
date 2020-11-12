@@ -47,11 +47,10 @@ class FastAttention(nn.Module):
         return final_features
 
     def causal_attention(self, q, k, v):
-        k_cumsum = k.cumsum(dim=-2)
+        denominator = 1/torch.einsum('nhqf, nhkf -> nhqf', q, k.cumsum(dim=-2))
         x = torch.einsum('nhkf, nhkd -> nhkfd', k, v)
         x = x.cumsum(dim=-3)
-        x /= k_cumsum.unsqueeze(dim=-1)
-        out = torch.einsum('nhqfd, nhqf -> nhqd', x, q)
+        out = torch.einsum('nhqfd, nhqf, nhqf -> nhqd', x, q, denominator)
         return out
 
     
@@ -297,7 +296,6 @@ class Performers(nn.Module):
         input_pad_mask = self.input_pad_mask(inputs)
         output_pad_mask = self.output_pad_mask(targets)
         encoder_output = self.encoder(inputs, input_pad_mask)
-        # return encoder_output
         decoder_out = self.decoder(target, encoder_output, output_pad_mask)
         return decoder_out
         
