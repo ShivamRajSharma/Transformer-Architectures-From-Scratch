@@ -1,7 +1,7 @@
 # Transformer Architecure From Scratch Using PyTorch
 
 <p align="center">
-  <img src="https://github.com/ShivamRajSharma/Transformer-Architectures-From-Scratch/blob/master/gittransformer.png" height="450" />
+  <img src="https://github.com/ShivamRajSharma/Transformer-Architectures-From-Scratch/blob/master/gittransformer.png" height="400" />
 </p>
 
 
