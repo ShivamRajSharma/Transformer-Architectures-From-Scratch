@@ -13,7 +13,6 @@ A Self attention based Encoder-Decoder Architecture used for
 3) Text extraction
 
 Paper - https://arxiv.org/abs/1706.03762
---------
 
 ## 2) BERT - 
 A Self attention based Encoder Architecture used for 
