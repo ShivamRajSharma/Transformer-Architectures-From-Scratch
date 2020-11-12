@@ -5,29 +5,21 @@
 
 ## 1) TRANSFORMER - 
 A Self attention based Encoder-Decoder Architecture.
-
 Uses - 
-
-a) Machine Translation
-
-b) Document Summaraization
-
-c) Text extraction
+1) Machine Translation
+2) Document Summaraization
+3) Text extraction
 
 Paper - https://arxiv.org/abs/1706.03762
 
 ## 2) BERT - 
 A Self attention based Encoder Architecture.
 Uses -
-a) Sentiment Classification
-
-b) Named Entity Recognition
-
-c) Question and Answering
-
-d) Sentence Embedding Extraction
-
-e) Document Matching
+1) Sentiment Classification
+2) Named Entity Recognition
+3) Question and Answering
+4) Sentence Embedding Extraction
+5) Document Matching
 
 Paper - https://arxiv.org/abs/1810.04805
 
@@ -60,12 +52,9 @@ Paper - https://arxiv.org/abs/2006.03677
 
 ## 6) PERFORMER - 
 A Self attention based Encoder-Decoder Architecture with a linear time compleity.
-
 Uses - 
-a) Machine Translation
-
-b) Document Summaraization
-
-c) Text extraction
+1) Machine Translation
+2) Document Summaraization
+3) Text extraction
 
 Paper - https://arxiv.org/abs/2009.14794
