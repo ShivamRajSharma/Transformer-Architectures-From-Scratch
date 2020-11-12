@@ -5,7 +5,6 @@
 
 ## 1) TRANSFORMER - 
 A Self attention based Encoder-Decoder Architecture.
-
 Uses - 
 1) Machine Translation
 2) Document Summaraization
