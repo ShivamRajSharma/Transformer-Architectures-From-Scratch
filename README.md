@@ -5,6 +5,7 @@
 
 ## 1) TRANSFORMER - 
 A Self attention based Encoder-Decoder Architecture.
+
 Uses - 
 1) Machine Translation
 2) Document Summaraization
@@ -14,6 +15,7 @@ Paper - https://arxiv.org/abs/1706.03762
 
 ## 2) BERT - 
 A Self attention based Encoder Architecture.
+
 Uses -
 1) Sentiment Classification
 2) Named Entity Recognition
@@ -25,6 +27,7 @@ Paper - https://arxiv.org/abs/1810.04805
 
 ## 3) GPT-1 - 
 A Self attention based Decoder based Autoregressive model.
+
 Uses -
 1) Sentence Completion
 2) Generating Text
@@ -34,6 +37,7 @@ Paper - https://paperswithcode.com/method/gpt
 
 ## 4) GPT-2 - 
 A Self attention based Decoder based Autoregressive model.
+
 Uses -
 1) Sentence Completion
 2) Generating Text
@@ -43,6 +47,7 @@ Paper - https://d4mucfpksywv.cloudfront.net/better-language-models/language-mode
 
 ## 5) ViT - 
 A State of the art Self attention based Encoder Architecture for for image classification.
+
 Uses :
 1) Image Classification 
 2) Image Encoding
@@ -52,6 +57,7 @@ Paper - https://arxiv.org/abs/2006.03677
 
 ## 6) PERFORMER - 
 A Self attention based Encoder-Decoder Architecture with a linear time compleity.
+
 Uses - 
 1) Machine Translation
 2) Document Summaraization
