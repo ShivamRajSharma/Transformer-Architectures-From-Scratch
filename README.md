@@ -2,6 +2,11 @@
 
 ![Screenshot](gittransformer.png)
 
+<p align="center">
+  <img src="gitransformer.png" />
+</p>
+
+
 
 ## 1) TRANSFORMER - 
 A Self attention based Encoder-Decoder Architecture used for 
