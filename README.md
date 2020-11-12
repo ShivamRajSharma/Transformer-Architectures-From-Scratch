@@ -3,7 +3,7 @@
 ![Screenshot](gittransformer.png)
 
 <p align="center">
-  <img src="www.github.com/ShivamRajSharma/Transformer-Architectures-From-Scratch/gitransformer.png" />
+  <img src="https://github.com/ShivamRajSharma/Transformer-Architectures-From-Scratch/gitransformer.png" />
 </p>
 
 
