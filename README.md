@@ -1,6 +1,6 @@
 # Transformer Architecure From Scratch Using PyTorch
 
-<img src="https://glassboxmedicine.files.wordpress.com/2019/08/figure1modified.png?w=451&h=647" width="100%">
+<img src="https://glassboxmedicine.files.wordpress.com/2019/08/figure1modified.png?w=451&h=647" width="70%" height="40%">
 
 
 ## 1) TRANSFORMER - 
